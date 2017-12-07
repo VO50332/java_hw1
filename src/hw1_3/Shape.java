@@ -19,7 +19,7 @@ public abstract class Shape implements Cloneable {
 
     // TODO (BOM): Write Representation Invariant
 
-
+    ///sladfk ;lsadkjf ;lasdkjf ;lk
     /**
      * @effects Initializes this with a a given location and color.
      */
