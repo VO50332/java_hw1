@@ -1,4 +1,4 @@
-package hw1_3;
+package hw1;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -41,6 +41,8 @@ public class Animator extends JFrame implements ActionListener {
 	public void stepAll() {
 		Iterator<Shape> iter = shapes.iterator();
 		while(iter.hasNext()) {
+			System.out.println(windowBound);
+			System.out.println(newShape);
 			newShape.step(windowBound);
 		}
 	}
