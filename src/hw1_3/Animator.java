@@ -1,6 +1,7 @@
 package hw1_3;
 
 import java.awt.*;
+import java.util.Random;
 import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -27,13 +28,13 @@ public class Animator extends JFrame implements ActionListener {
                         numberedOvalItem, sectorItem, aboutItem;
     private JCheckBoxMenuItem animationCheckItem;
     private JPanel mainPanel;
-    private Point location;
+  //  private Point location;
     // shapes that have been added to this
 
     // TODO (BOM): Add and initialize a container of shapes called shapes.
     ArrayList<Shape> shapes = new ArrayList<>();
     
-	private Shape newShape;
+	//private Shape newShape;
 	Rectangle windowBound = new Rectangle(WINDOW_WIDTH,WINDOW_HEIGHT);
   
  
@@ -41,7 +42,14 @@ public class Animator extends JFrame implements ActionListener {
 	public void stepAll() {
 		Iterator<Shape> iter = shapes.iterator();
 		while(iter.hasNext()) {
-			newShape.step(windowBound);
+		//	System.out.println(iter);
+			
+			Shape n = iter.next();
+			n.step(windowBound);
+			Point loc = n.getLocation();
+			int xx = (int) loc.getX();
+			int yy = (int) loc.getY();
+			System.out.println("(" + xx +"," + yy +")");
 		}
 	}
 	
@@ -61,7 +69,7 @@ public class Animator extends JFrame implements ActionListener {
         getContentPane().add(mainPanel);
         menuBar = (JMenuBar)createMenuBar();
         setJMenuBar(menuBar);
-        location = mainPanel.getLocation();
+        //location = mainPanel.getLocation();
         // enable animation timer (ticks 25 times per second)
         Timer timer = new Timer(40, new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
@@ -71,7 +79,7 @@ public class Animator extends JFrame implements ActionListener {
                 	
                 	
                 	stepAll();
-
+                	
                 		
                     repaint();  // make sure that the shapes are redrawn
                 }
@@ -145,8 +153,11 @@ public class Animator extends JFrame implements ActionListener {
      *          order to schedule the component for redrawing.
      */
     public void paint(Graphics g) {
+    	super.paint(g);
     	Iterator<Shape> iter = shapes.iterator();
 		while(iter.hasNext()) {		
+		//	Shape n = iter.next();
+		//	System.out.println(n.getLocation());
 			iter.next().draw(getContentPane().getGraphics());
 			
 		}
@@ -183,23 +194,35 @@ public class Animator extends JFrame implements ActionListener {
                  (source.equals(numberedOvalItem)) ||
                  (source.equals(sectorItem))) {
         	//Point location = new Point((int)Math.random()*WINDOW_WIDTH,(int)Math.random()*WINDOW_HEIGHT);
-            int red = (int)Math.random()*256;
-            int green = (int)Math.random()*256;
-            int blue = (int)Math.random()*256;
+        	//this.velocityX = rand.nextInt(10)-5;
+        	Random rand = new Random();
+            int red = (int) rand.nextInt(256);
+//        	Random randgreen = new Random();
+            int green = (int)rand.nextInt(256);
+  //      	Random rand = new Random();
+            int blue = (int)rand.nextInt(256);
+        //    int ran = (int) rand.nextInt(256);
+       //     System.out.println(ran);
             Color color = new Color(red,green,blue);
-            int randomWidth = (int)Math.random(); 
-            int width = randomWidth*WINDOW_WIDTH*2/10+WINDOW_WIDTH/10;
-            int randomHeight = (int)Math.random(); 
-            int height = randomHeight*WINDOW_HEIGHT*2/10+WINDOW_HEIGHT/10;
-            int y = (int) ( -(WINDOW_HEIGHT - height)*Math.random() + location.getY());
-            int x = (int) ( (WINDOW_WIDTH - width)*Math.random() + location.getX());
-            int startAngle = (int) (Math.random()*2 -1 ) * 359;
-            int arcAngle = (int) (Math.random() ) * 359;
+            double randomWidth = Math.random(); 
+           // System.out.println("randomwidth is " + randomWidth);
+
+            int width = (int) (randomWidth*WINDOW_WIDTH*2/10+WINDOW_WIDTH/10);
+           // System.out.println("width is " + width);
+            double randomHeight = Math.random(); 
+           // System.out.println("randomHeight is " + randomHeight);
+            int height = (int) (randomHeight*WINDOW_HEIGHT*2/10+WINDOW_HEIGHT/10);
+          //  System.out.println("height is " + height);
+            int y = (int) ( (WINDOW_HEIGHT - height)*rand.nextInt(1));
+            int x = (int) ( (WINDOW_WIDTH - width)*rand.nextInt(1));
+            int startAngle = (int) (rand.nextInt(1)*2 -1 ) * 359;
+            int arcAngle = (int) (rand.nextInt(1) ) * 359;
             Point shapeLocation = new Point(x,y);
             
         	if (source.equals(triangleItem)) {
         		LocationAndColorChangingTriangle newShape = new LocationAndColorChangingTriangle(shapeLocation, color,width,height);
         	 	shapes.add(newShape);
+        	 //	newShape.draw(getContentPane().getGraphics());
         		
         	}
         	if(source.equals(sectorItem)) {

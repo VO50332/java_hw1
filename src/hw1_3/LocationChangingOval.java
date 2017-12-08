@@ -34,8 +34,8 @@ import java.awt.*;
 		Point location = getLocation();
 		int x = (int)location.getX();
 		int y = (int)location.getY();
-		setColor(getColor());
-		g.drawOval(x,y,width,height);
+		g.setColor(getColor());
+	//	g.drawOval(x,y,width,height);
 		g.fillOval(x, y, width, height);
 		
 	}

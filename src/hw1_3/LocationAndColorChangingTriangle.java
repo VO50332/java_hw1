@@ -29,13 +29,14 @@ public class LocationAndColorChangingTriangle extends ColorAndLocationChangingSh
 
 	@Override
 	public void draw(Graphics g) {
-		setColor(getColor());
+		g.setColor(getColor());
 		Point location=getLocation();
 		int x = (int) location.getX();
 		int y = (int) location.getY();
-		int[] xList = {x,x,x+width};
-		int[] yList = {y,y-height,y};
-		g.drawPolygon(xList, yList, 3);
+		int[] xList = {x,x,x+this.width};
+		int[] yList = {y,y+this.height,y};
+		System.out.println("(" + x + "," + y+ ") height="+ this.height + "width =" + this.width);
+	//	g.drawPolygon(xList, yList, 3);
 		g.fillPolygon(xList, yList, 3);
 		
 	}

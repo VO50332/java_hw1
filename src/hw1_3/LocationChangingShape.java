@@ -112,7 +112,7 @@ public abstract class LocationChangingShape extends Shape implements Animatable 
     	double boundY = bound.getY();
     	boolean velocityChangedX;
     	boolean velocityChangedY;
-    	
+    	//System.out.println();
     	if (x + width + velocityX  > boundX + sizeX || x + velocityX  < boundX) { 
     	//	System.out.println("new location is: " + x + velocityX );
     		//System.out.println("bound is:"+boundX + sizeX);
@@ -122,7 +122,8 @@ public abstract class LocationChangingShape extends Shape implements Animatable 
     	else {
     		velocityChangedX = false;
     	}
-    	if (y + velocityY  > boundY  || y - height + velocityY  < boundY - sizeY) {
+    	//if (y + velocityY  > boundY  || y - height + velocityY  < boundY - sizeY) {
+    	if (y + height + velocityY  > boundY + sizeY || y +  velocityY  < boundY ) {
     		velocityChangedY = true;
     		velocityY = -velocityY;
     	}

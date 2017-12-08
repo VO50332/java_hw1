@@ -18,11 +18,22 @@ public class LocationChangingNumberedOval extends LocationChangingOval{
 	}
 	
 	public void draw(Graphics g) {
+		super.draw(g);
 		Point location = getLocation();
 		x = (int)location.getX();
 		y = (int)location.getY();
 		String myNumber = Integer.toString(number);
-		g.drawString(myNumber,x,y);
+		Rectangle rec = this.getBounds();
+		int boundX = (int) rec.getWidth();
+		int boundY = (int) rec.getHeight();
+		//Color color = getColor();
+		//int blue = color.getBlue();
+		//int red = color.getRed();
+		//int green = color.getGreen();
+		
+		//Color numColor = new Color(1,2,3);
+		g.drawString(myNumber,x+boundX,y+boundY);
+		g1.setColor(Color.white);
 	}
 
 }

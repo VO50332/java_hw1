@@ -63,7 +63,7 @@ public class AngleChangingSector extends Shape implements Animatable{
 	public void draw(Graphics g) {
 		int x = (int)getLocation().getX();
 		int y = (int)getLocation().getY();
-		setColor(getColor());
+		g.setColor(getColor());
 		g.fillArc(x, y, this.width, this.height, this.startAngle, this.arcAngle);
 		
 	}
