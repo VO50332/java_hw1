@@ -1,4 +1,4 @@
-package hw1;
+package hw1_3;
 
 
 import java.awt.*;

@@ -1,4 +1,4 @@
-package hw1;
+package hw1_3;
 
 import java.awt.*;
 
@@ -10,9 +10,6 @@ public class AngleChangingSector extends Shape implements Animatable{
 	private int startAngle;
 	private int arcAngle;
 	boolean up = true;
-	//private int velocityX;
-	//private int velocityY;
-//	private boolean velocityChanged;
 	
 	public AngleChangingSector(Point location, Color color,int width, int height,int startAngle,int arcAngle) {
 		super(location, color);
@@ -21,9 +18,7 @@ public class AngleChangingSector extends Shape implements Animatable{
 		dimension  = new Dimension(width,height);// bounding rectangle dimensions 
 		this.startAngle = startAngle;
 		this.arcAngle = arcAngle;
-    	//Random rand = new Random();
-    	//this.velocityX = rand.nextInt(10)-5;
-    //	this.velocityY = rand.nextInt(10)-5;
+
 	}
 
     
@@ -48,7 +43,6 @@ public class AngleChangingSector extends Shape implements Animatable{
 	@Override
 	public void setSize(Dimension dimension) throws ImpossibleSizeException {
 		this.dimension = dimension;
-		// TODO Auto-generated method stub
 		
 	}
 

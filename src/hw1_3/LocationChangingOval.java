@@ -1,4 +1,4 @@
-package hw1;
+package hw1_3;
 
 import java.awt.*;
 
@@ -26,7 +26,7 @@ import java.awt.*;
 	public void setSize(Dimension _dimension) throws ImpossibleSizeException {
 		//try - catch
 		this.dimension = _dimension;
-		System.out.println("new dimension is:" + this.dimension);
+		
 	}
 
 	@Override
@@ -35,7 +35,6 @@ import java.awt.*;
 		int x = (int)location.getX();
 		int y = (int)location.getY();
 		g.setColor(getColor());
-	//	g.drawOval(x,y,width,height);
 		g.fillOval(x, y, width, height);
 		
 	}
@@ -43,7 +42,7 @@ import java.awt.*;
 	
 	@Override
 	public Rectangle getBounds() {
-		System.out.println("rectangle dimension is:" + this.dimension);
+		
 		Rectangle rec = new Rectangle(getLocation(),this.dimension); // do I have to create another object?
 		return rec;
 	}

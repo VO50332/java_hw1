@@ -1,6 +1,7 @@
-package hw1;
+package hw1_3;
 
 import java.awt.*;
+import java.util.Random;
 //import java.util.Random;
 
 
@@ -47,11 +48,11 @@ public abstract class ColorAndLocationChangingShape extends LocationChangingShap
     	boolean change = velocityChanged();
     	//System.out.println("right here.velocity changed is " + change);
     	if (change) {
-    		//Random rand = new Random();
-    		red = (int)Math.random()*256;
-    		green = (int)Math.random()*256;
-    		blue = (int)Math.random()*256;
-    	//	Color newColor = new Color(red,green,blue);
+    		Random rand = new Random();
+    		red = (int) rand.nextInt(256);
+    		green = (int) rand.nextInt(256);
+    		blue = (int) rand.nextInt(256);
+    		Color newColor = new Color(red,green,blue);
     		System.out.println("color test is:" + newColor);
     		setColor(newColor);
     	}

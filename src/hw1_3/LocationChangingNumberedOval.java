@@ -1,4 +1,4 @@
-package hw1;
+package hw1_3;
 
 import java.awt.*;
 
@@ -32,8 +32,16 @@ public class LocationChangingNumberedOval extends LocationChangingOval{
 		//int green = color.getGreen();
 		
 		//Color numColor = new Color(1,2,3);
-		g.drawString(myNumber,x+boundX,y+boundY);
-	//	g1.setColor(Color.white);
+		Color shapeColor = g.getColor();
+		int blue = shapeColor.getBlue();
+		//int rgb = shapeColor.getRGB();
+		//System.out.println("rgb is" + rgb);
+		System.out.println(shapeColor + myNumber);
+		g.setColor(Color.black);
+		if (blue > 120) {
+			g.setColor(Color.white);
+		}
+		g.drawString(myNumber,x +boundX/2,y+boundY/2);
 	}
 
 }
