@@ -4,8 +4,8 @@ import java.awt.*;
 
 
 public class AngleChangingSector extends Shape implements Animatable{
-	private int width;
-	private int height;
+//	private int width;
+	//private int height;
 	private Dimension dimension;
 	private int startAngle;
 	private int arcAngle;
@@ -13,9 +13,16 @@ public class AngleChangingSector extends Shape implements Animatable{
 	
 	public AngleChangingSector(Point location, Color color,int width, int height,int startAngle,int arcAngle) {
 		super(location, color);
-		this.width = width;
-		this.height = height;
-		dimension  = new Dimension(width,height);// bounding rectangle dimensions 
+	//	this.width = width;
+		//this.height = height;
+	//	dimension  = new Dimension(width,height);// bounding rectangle dimensions 
+		Dimension _dimension  = new Dimension(width,height);// bounding rectangle dimensions 
+		try {
+			this.setSize(_dimension);
+		} catch (ImpossibleSizeException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		this.startAngle = startAngle;
 		this.arcAngle = arcAngle;
 
@@ -58,7 +65,9 @@ public class AngleChangingSector extends Shape implements Animatable{
 		int x = (int)getLocation().getX();
 		int y = (int)getLocation().getY();
 		g.setColor(getColor());
-		g.fillArc(x, y, this.width, this.height, this.startAngle, this.arcAngle);
+		int width = (int) dimension.getWidth();
+		int height = (int) dimension.getHeight();
+		g.fillArc(x, y, width, height, this.startAngle, this.arcAngle);
 		
 	}
 

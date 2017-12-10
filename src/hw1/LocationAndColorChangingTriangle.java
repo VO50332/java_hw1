@@ -3,15 +3,23 @@ package hw1;
 import java.awt.*;
 
 public class LocationAndColorChangingTriangle extends ColorAndLocationChangingShape {
-	private int width;
-	private int height;
+	//private int width;
+//	private int height;
 	private Dimension dimension;
 	
 	LocationAndColorChangingTriangle(Point location, Color color,int _width,int _height) {
 		super(location, color);
-		this.height = _height;
-		this.width = _width;
-		dimension  = new Dimension(width,height);// bounding rectangle dimensions 
+	//	this.height = _height;
+		//this.width = _width;
+		//dimension  = new Dimension(width,height);// bounding rectangle dimensions
+		Dimension _dimension  = new Dimension(_width,_height);// bounding rectangle dimensions 
+		try {
+			this.setSize(_dimension);
+		} catch (ImpossibleSizeException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		
 	}
 
@@ -33,10 +41,10 @@ public class LocationAndColorChangingTriangle extends ColorAndLocationChangingSh
 		Point location=getLocation();
 		int x = (int) location.getX();
 		int y = (int) location.getY();
-		int[] xList = {x,x,x+this.width};
-		int[] yList = {y,y+this.height,y};
-		System.out.println("(" + x + "," + y+ ") height="+ this.height + "width =" + this.width);
-	//	g.drawPolygon(xList, yList, 3);
+		int width = (int) dimension.getWidth();
+		int height = (int) dimension.getHeight();
+		int[] xList = {x,x,x+width};
+		int[] yList = {y,y+height,y};
 		g.fillPolygon(xList, yList, 3);
 		
 	}
