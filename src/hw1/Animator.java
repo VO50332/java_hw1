@@ -198,9 +198,13 @@ public class Animator extends JFrame implements ActionListener {
             int startAngle = (int) ((Math.random()*2 -1 ) * 359);
             int arcAngle = (int) ((Math.random() ) * 359);
             Point shapeLocation = new Point(x,y);
+            
         	if (source.equals(triangleItem)) {
-        		LocationAndColorChangingTriangle newShape = new LocationAndColorChangingTriangle(shapeLocation, color,width,height);
-        	 	shapes.add(newShape);
+        		//try{}
+        		//catch{
+        		// do default width and height
+        		LocationAndColorChangingTriangle newShape = new LocationAndColorChangingTriangle(shapeLocation, color,0,height);
+			 	shapes.add(newShape);
         		
         	}
         	if(source.equals(sectorItem)) {

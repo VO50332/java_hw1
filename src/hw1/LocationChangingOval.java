@@ -20,7 +20,7 @@ import java.awt.*;
 			this.setSize(_dimension);
 		} catch (ImpossibleSizeException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("no problem is possible");
 		}
 		
 		
@@ -30,8 +30,15 @@ import java.awt.*;
 	
 	@Override
 	public void setSize(Dimension _dimension) throws ImpossibleSizeException {
-		//try - catch
-		this.dimension = _dimension;
+		if (_dimension.getWidth() > 0 && _dimension.getHeight() > 0 ) {
+			this.dimension = _dimension;
+		}
+		else {
+			ImpossibleSizeException ex=  new ImpossibleSizeException("width or height cannot be negative or zero");
+			this.dimension = ex.newDimension;
+			System.out.println("Impossible size. New size is:" + "(" + (int)ex.newDimension.getWidth() +"," + (int)ex.newDimension.getHeight() +")");
+			
+		}
 		
 	}
 
