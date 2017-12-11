@@ -21,9 +21,10 @@ public abstract class LocationChangingShape extends Shape implements Animatable 
 
     // TODO (BOM): Write Abstraction Function
 	// represents a location changing shape, which has velocity in the x direction of this.velocityX and velocity in the y direction of this.velocityY.
-	// velocityChanged is a boolean that determines if the there was a change in the direction of the velocity and thus there needs to be a change of color
+	// velocityChanged is boolean that determines whether a change occurred in the direction of the velocity and thus color changing shapes can change their color
     // TODO (BOM): Write Representation Invariant
 	// this.velocityX and this.velocityY cannot be lower than -5, higher than 5, 0 or null
+	// I don't think that this is a useful Rep invariant because these situation cannot happen. In this case I would say that there is no Rep Invariant to mention (!)
 
     /**
      * @effects Initializes this with a a given location and color. Each
@@ -38,16 +39,17 @@ public abstract class LocationChangingShape extends Shape implements Animatable 
     		int vX = rand.nextInt(10)-5;
     		int vY = rand.nextInt(10)-5;
     		setVelocity(vX, vY);
-    		checkRep();
+    //		checkRep();
 	    }
 	
-
+/*
 	 private void checkRep() { // there is no chance that this can happen!!
 		assert this.velocityX != 0  : "velocity in x direction cannot be zero";
 	    assert this.velocityY != 0 : "velocity in y direction cannot be zero";
 		assert (this.velocityX > 5 | this.velocityX < -5) : "velocity in x direction cannot be higher than 5 or lower than -5";
 	    assert (this.velocityX > 5 | this.velocityX < -5) : "velocity in y direction cannot be higher than 5 or lower than -5";
 	 }
+*/
     /**
      * @return the horizontal velocity of this.
      */
@@ -55,7 +57,7 @@ public abstract class LocationChangingShape extends Shape implements Animatable 
 
     public int getVelocityX() {
         // TODO (BOM): Implement this method
-    	checkRep();
+   // 	checkRep();
     	return this.velocityX;
     }
 
@@ -65,7 +67,7 @@ public abstract class LocationChangingShape extends Shape implements Animatable 
      */
     public int getVelocityY() {
         // TODO (BOM): Implement this method
-    	checkRep();
+    //	checkRep();
     	return this.velocityY;
     }
 
@@ -77,7 +79,7 @@ public abstract class LocationChangingShape extends Shape implements Animatable 
      *          vertical velocity of this to velocityY.
      */
     public void setVelocity(int velocityX, int velocityY) {
-    	checkRep();
+    //	checkRep();
         // TODO (BOM): Implement this method
 
     	if ( velocityX > 5 || velocityX < -5 || velocityY > 5 || velocityY < -5 || velocityX == 0 || velocityY == 0) {
@@ -90,7 +92,7 @@ public abstract class LocationChangingShape extends Shape implements Animatable 
     	this.velocityX = velocityX;
     	this.velocityY = velocityY;
     	}
-    	checkRep();
+  //  	checkRep();
     }
 
 
@@ -110,7 +112,7 @@ public abstract class LocationChangingShape extends Shape implements Animatable 
      */
     public void step(Rectangle bound) {
         // TODO (BOM): Implement this method
-    	checkRep();
+    //	checkRep();
     	Rectangle boundingRec = getBounds();
     	int width = (int) boundingRec.getWidth();
     	int height = (int) boundingRec.getHeight();
@@ -147,11 +149,11 @@ public abstract class LocationChangingShape extends Shape implements Animatable 
     	
     	Point newPoint= new Point((int)newX,(int)newY);// is the casting here ok? yes
     	setLocation(newPoint);	
-    	checkRep();
+    //	checkRep();
 
     }
     public boolean velocityChanged() {
-    	checkRep();
+   // 	checkRep();
     	return velocityChanged;
     }
 }

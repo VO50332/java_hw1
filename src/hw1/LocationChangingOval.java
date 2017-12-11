@@ -2,13 +2,21 @@ package hw1;
 
 import java.awt.*;
 
+/**
+ * A LocationChangingOval is a kind of a LocationChaningShape object. A typical location changing oval consists of
+ * a set of properties: {location, color, shape, size}.
+ * LocationAndColorChangingTriangle are mutable and cloneable.
+ */
  class LocationChangingOval extends LocationChangingShape{
 
 
 	private Dimension dimension;
 	private int windowWidth;
 	private int windowHeight;
-	
+    /**
+     * @effects Initializes this with a a given location , color and size.
+     * also initializes the window dimensions 
+     */
 	LocationChangingOval(Point _location, Color _color,int _width,int _height,int windowWidth,int windowHeight)  {
 		super(_location, _color);
 
@@ -25,7 +33,10 @@ import java.awt.*;
 
 	}
 	
-	
+    /**
+     * @effects changes the size of the shape. 
+     * @modifies this.dimension. In case the the size input is not consistent with the rep invariant - new size is used from ImpossibleSizeException
+     */
 	@Override
 	public void setSize(Dimension _dimension) throws ImpossibleSizeException {
 		if (_dimension.getWidth() > 0 && _dimension.getHeight() > 0 ) {
@@ -36,7 +47,9 @@ import java.awt.*;
 		}
 		
 	}
-
+	/**
+	 * @effects draws the triangle at specified location with this.dimension
+	 */
 	@Override
 	public void draw(Graphics g) {
 		Point location = getLocation();
@@ -49,7 +62,10 @@ import java.awt.*;
 		
 	}
 	
-	
+    /**
+     * 
+     * @return new Rectangle object such that its upper left corner is in the specified location, and its dimension is this.dimension
+     */
 	@Override
 	public Rectangle getBounds() {
 		

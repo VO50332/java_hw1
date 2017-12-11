@@ -6,7 +6,7 @@ import java.util.Random;
 
 
 /**
- * A ColorAndLocationChaningShape is a Shape that can change its location and color using its step()
+ * A ColorAndLocationChaningShape is a LocationChaningShape that can change its location and color using its step()
  * method.
  * Thus, a typical LocationChaningShape consists of the following set of
  * properties: {location, color, shape, size, velocity}
@@ -18,9 +18,11 @@ public abstract class ColorAndLocationChangingShape extends LocationChangingShap
 	Color newColor = new Color(red,green,blue);
 	
     // TODO (BOM): Write Abstraction Function
-
+	// represents a color and location changing shape, which has a certain RGB color that composes out of red,green and blue colors:
+	// this.blue is the blue influence, this.green is the green one and this.red is the red one.
     // TODO (BOM): Write Representation Invariant
-	
+	 //this.red, this.blue and this.green have to be an int of the range 0 to 255
+	// again I don't think that this Rep Invariant has to be checked because I make them here and there is no chance that they are not legit.
 
     /**
      * @effects Initializes this with a a given location and color. Each

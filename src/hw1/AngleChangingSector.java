@@ -2,7 +2,11 @@ package hw1;
 
 import java.awt.*;
 
-
+/**
+ * A AngleChangingSector is a kind of a shape object. A typical angle changing sector consists of
+ * a set of properties: {location, color, shape, size}.
+ * AngleChangingSector are mutable and cloneable.
+ */
 public class AngleChangingSector extends Shape implements Animatable{
 	//private int width;
 //	private int height;

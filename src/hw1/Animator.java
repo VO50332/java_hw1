@@ -207,7 +207,7 @@ public class Animator extends JFrame implements ActionListener {
 
         	if (source.equals(triangleItem)) {
 
-        		LocationAndColorChangingTriangle newShape = new LocationAndColorChangingTriangle(shapeLocation, color,width,height,WINDOW_WIDTH,WINDOW_HEIGHT);
+        		LocationAndColorChangingTriangle newShape = new LocationAndColorChangingTriangle(shapeLocation, color,width,0,0,WINDOW_HEIGHT);
 			 	shapes.add(newShape);
         		
         	}
