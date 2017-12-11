@@ -16,10 +16,9 @@ public abstract class Shape implements Cloneable {
 
 
     // TODO (BOM): Write Abstraction Function
-
+    	// represents a shape, which its bounding rectangle's upper left corner is this.location, and its color is this.color.
     // TODO (BOM): Write Representation Invariant
-
-    ///sladfk ;lsadkjf ;lasdkjf ;lk
+    	// this.location != null, color != null
     /**
      * @effects Initializes this with a a given location and color.
      */
@@ -28,14 +27,23 @@ public abstract class Shape implements Cloneable {
 		 // TODO (BOM): Implement this method
     	this.location = location;
     	this.color = color; 
+    	checkRep();
     }
-
+    
+    /**
+     * throws AssertionError if representation invariant is violated
+     */
+    private void checkRep() {
+    	//System.out.println(this.location.getX());
+    	assert this.location != null  : "location cannot be null";
+    	assert this.color != null : "color cannot be null";
+    }
     /**
      * @return the top left corner of the bounding rectangle of this.
      */
     public Point getLocation() {
         // TODO (BOM): Implement this method
-    	
+    	checkRep();
     	return (Point) this.location.clone();//because location is immutable point, return location will deliver the user the real reference
 
     }
@@ -47,7 +55,9 @@ public abstract class Shape implements Cloneable {
      *          returns location after call has completed.
      */
     public void setLocation(Point location) {
+    	checkRep();
         this.location = (Point)location.clone();
+        checkRep();
     }
 
 
@@ -75,6 +85,7 @@ public abstract class Shape implements Cloneable {
      *         this and false otherwise.
      */
     public boolean contains(Point point) {
+    	checkRep();
         return getBounds().contains(point);
     }
 
@@ -83,6 +94,7 @@ public abstract class Shape implements Cloneable {
      * @return color of this.
      */
     public Color getColor() {
+    	checkRep();
         return color;
     }
 
@@ -92,7 +104,9 @@ public abstract class Shape implements Cloneable {
      * @effects Sets color of this.
      */
     public void setColor(Color color) {
+    	checkRep();
         this.color = color;
+        checkRep();
     }
 
 
@@ -110,6 +124,7 @@ public abstract class Shape implements Cloneable {
     @Override
     public Object clone() {
         // TODO (BOM): Implement this method
+    	checkRep();
     	Shape newShape = null;
     	try {
     		newShape = (Shape)super.clone();
@@ -118,11 +133,13 @@ public abstract class Shape implements Cloneable {
     		assert false: "Got inside the CloneNotSupportedException exception of Shape.clone()";
     	}
     	newShape.location = (Point)this.location.clone();// point is immutable and thus won't copy the value when cloning
+    	checkRep();
     	return newShape;
     	
     }
 
 	public void step(Rectangle windowBound) {
+		checkRep();
 		// TODO Auto-generated method stub
 		
 	}
