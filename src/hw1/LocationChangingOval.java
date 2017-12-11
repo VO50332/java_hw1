@@ -6,22 +6,16 @@ import java.awt.*;
 
 	
 	//private Point relocation;
-	//private int width;
-	//private int height;
+	private int width;
+	private int height;
 	private Dimension dimension;
 
 	
 	LocationChangingOval(Point _location, Color _color,int _width,int _height) {
 		super(_location, _color);
-		//this.width = _width;
-		//this.height = _height;
-		Dimension _dimension  = new Dimension(_width,_height);// bounding rectangle dimensions 
-		try {
-			this.setSize(_dimension);
-		} catch (ImpossibleSizeException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		this.width = _width;
+		this.height = _height;
+		dimension  = new Dimension(width,height);// bounding rectangle dimensions 
 		
 		
 
@@ -40,8 +34,6 @@ import java.awt.*;
 		Point location = getLocation();
 		int x = (int)location.getX();
 		int y = (int)location.getY();
-		int width = (int) dimension.getWidth();
-		int height = (int) dimension.getHeight();
 		g.setColor(getColor());
 		g.fillOval(x, y, width, height);
 		

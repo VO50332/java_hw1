@@ -35,9 +35,9 @@ public abstract class LocationChangingShape extends Shape implements Animatable 
 		 //	setLocation(_location);
 		 	//setColor(_color);
 	    	Random rand = new Random();
-	    	int vX = rand.nextInt(10)-5;
-	    	int vY = rand.nextInt(10)-5;
-	    	setVelocity(vX,vY);
+	    	this.velocityX = rand.nextInt(10)-5;
+	    	this.velocityY = rand.nextInt(10)-5;
+
 	    }
 	
 
@@ -73,15 +73,10 @@ public abstract class LocationChangingShape extends Shape implements Animatable 
         // TODO (BOM): Implement this method
 
     	if ( velocityX > 5 || velocityX < -5 || velocityY > 5 || velocityY < -5 || velocityX == 0 || velocityY == 0) {
-	    	Random rand = new Random();
-	    	int vX = rand.nextInt(10)-5;
-	    	int vY = rand.nextInt(10)-5;
-	    	setVelocity(vX,vY);
-    	}	
-    	else {
-        	this.velocityX = velocityX ;
-        	this.velocityY = velocityY;
-    	}
+    		assert false: "velocityX or velocityY are either above 5,under-5 or 0";
+    	}		
+    	this.velocityX = velocityX;
+    	this.velocityY = velocityY;
 
     }
 
@@ -108,31 +103,40 @@ public abstract class LocationChangingShape extends Shape implements Animatable 
     	Point _location = getLocation();
     	double x = _location.getX();
     	double y = _location.getY();
+    	//double newX;
+    	//double newY;
     	double sizeX = bound.getWidth();
     	double sizeY = bound.getHeight();
+    	//private double y = location.getY();
     	double boundX = bound.getX();
     	double boundY = bound.getY();
     	boolean velocityChangedX;
     	boolean velocityChangedY;
-    	if (x + width + this.velocityX  > boundX + sizeX || x + this.velocityX  < boundX) { 
-    		this.velocityX = -this.velocityX;
+    	//System.out.println();
+    	if (x + width + velocityX  > boundX + sizeX || x + velocityX  < boundX) { 
+    	//	System.out.println("new location is: " + x + velocityX );
+    		//System.out.println("bound is:"+boundX + sizeX);
+    		velocityX = -velocityX;
     		velocityChangedX = true;
     	}
     	else {
     		velocityChangedX = false;
     	}
-    	if (y + height + this.velocityY  > boundY + sizeY || y +  this.velocityY  < boundY ) {
+    	//if (y + velocityY  > boundY  || y - height + velocityY  < boundY - sizeY) {
+    	if (y + height + velocityY  > boundY + sizeY || y +  velocityY  < boundY ) {
     		velocityChangedY = true;
-    		this.velocityY = -this.velocityY;
+    		velocityY = -velocityY;
     	}
     	else {
     		velocityChangedY = false;
     	}
     	velocityChanged=velocityChangedX || velocityChangedY;
-    	double newX = x+this.velocityX;
-    	double newY = y+this.velocityY;
+    	System.out.println("velcoity changed:" + velocityChanged);
+    	double newX = x+velocityX;
+    	double newY = y+velocityY;
     	
     	Point newPoint= new Point((int)newX,(int)newY);// is the casting here ok? yes
+    //	System.out.println("new point is:" + newPoint);
     	setLocation(newPoint);			
 
     }

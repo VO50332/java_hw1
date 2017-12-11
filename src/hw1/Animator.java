@@ -46,7 +46,10 @@ public class Animator extends JFrame implements ActionListener {
 			
 			Shape n = iter.next();
 			n.step(windowBound);
-
+			Point loc = n.getLocation();
+			int xx = (int) loc.getX();
+			int yy = (int) loc.getY();
+			System.out.println("(" + xx +"," + yy +")");
 		}
 	}
 	
@@ -72,8 +75,12 @@ public class Animator extends JFrame implements ActionListener {
             public void actionPerformed(ActionEvent evt) {
                 if (animationCheckItem.isSelected()) {
                     // TODO (BOM): Add code for making one animation step for all
-                    //       shapes in this             	
-                	stepAll();             	
+                    //       shapes in this
+                	
+                	
+                	stepAll();
+                	
+                		
                     repaint();  // make sure that the shapes are redrawn
                 }
             }
@@ -186,21 +193,37 @@ public class Animator extends JFrame implements ActionListener {
                  (source.equals(ovalItem)) ||
                  (source.equals(numberedOvalItem)) ||
                  (source.equals(sectorItem))) {
+        	//Point location = new Point((int)Math.random()*WINDOW_WIDTH,(int)Math.random()*WINDOW_HEIGHT);
+        	//this.velocityX = rand.nextInt(10)-5;
         	Random rand = new Random();
             int red = (int) rand.nextInt(256);
+//        	Random randgreen = new Random();
             int green = (int)rand.nextInt(256);
+  //      	Random rand = new Random();
             int blue = (int)rand.nextInt(256);
+        //    int ran = (int) rand.nextInt(256);
+       //     System.out.println(ran);
             Color color = new Color(red,green,blue);
-            int width = (int) (Math.random()*WINDOW_WIDTH*2/10+WINDOW_WIDTH/10);
-            int height = (int) (Math.random()*WINDOW_HEIGHT*2/10+WINDOW_HEIGHT/10);
+            double randomWidth = Math.random(); 
+           // System.out.println("randomwidth is " + randomWidth);
+
+            int width = (int) (randomWidth*WINDOW_WIDTH*2/10+WINDOW_WIDTH/10);
+           // System.out.println("width is " + width);
+            double randomHeight = Math.random(); 
+           // System.out.println("randomHeight is " + randomHeight);
+            int height = (int) (randomHeight*WINDOW_HEIGHT*2/10+WINDOW_HEIGHT/10);
+          //  System.out.println("height is " + height);
             int y = (int) ( (WINDOW_HEIGHT - height)*Math.random());
             int x = (int) ( (WINDOW_WIDTH - width)*Math.random());
+         //   System.out.println("shape location is: (" + x + "," + y + ")");
             int startAngle = (int) ((Math.random()*2 -1 ) * 359);
             int arcAngle = (int) ((Math.random() ) * 359);
             Point shapeLocation = new Point(x,y);
+            System.out.println("start angle is:" + startAngle + ", arc angle is:" + arcAngle);
         	if (source.equals(triangleItem)) {
         		LocationAndColorChangingTriangle newShape = new LocationAndColorChangingTriangle(shapeLocation, color,width,height);
         	 	shapes.add(newShape);
+        	 //	newShape.draw(getContentPane().getGraphics());
         		
         	}
         	if(source.equals(sectorItem)) {
