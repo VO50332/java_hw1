@@ -31,7 +31,7 @@ public abstract class Shape implements Cloneable {
     }
     
     /**
-     * throws AssertionError if representation invariant is violated
+     * @effects throws AssertionError if representation invariant is violated
      */
     private void checkRep() {
     	//System.out.println(this.location.getX());
@@ -88,7 +88,8 @@ public abstract class Shape implements Cloneable {
     	checkRep();
         return getBounds().contains(point);
     }
-
+    
+	//public abstract String getShape();
 
     /**
      * @return color of this.

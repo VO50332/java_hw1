@@ -2,27 +2,46 @@ package hw1;
 
 import java.awt.*;
 
+/**
+ * A LocationChangingNumberedOval is a kind of a LocationChangingOval. A location changing oval consists of
+ * a set of properties: {location, color, shape, size, number}.
+ * AngleChangingSector are mutable and cloneable.
+ */
 public class LocationChangingNumberedOval extends LocationChangingOval{
 	
 	private int number;
 	private static int counter;
-	private int x;
-	private int y;
+
+    //  Abstraction Function:
+	// represents a numbered oval such that at the center of the shape - its number is shown. every oval
+	// has an ordinal number such that the number of total ovals (till this point) is drawn on every new oval.
+	// this.dimension contains the shape's bounding rectangle dimensions
 	
-	LocationChangingNumberedOval(Point _location, Color _color, int _width, int _height,int windowWidth,int windowHeight) {
-		super(_location, _color, _width, _height,windowWidth,windowHeight);
+    // Representation Invariant:
+	//this.dimension cannot be zero, negative or null
+	//this.location != null, color != null
+
+    
+    /**
+     * @effects Initializes this with a a given location , color , size and number.
+     * 
+     */
+	LocationChangingNumberedOval(Point _location, Color _color, int _width, int _height) {
+		super(_location, _color, _width, _height);
 		counter++;
 		number = counter;
 
-		
-		// TODO Auto-generated constructor stub
 	}
 	
+	/**
+	 * @effects draws the numbered oval at specified location with this.dimension
+	 */
+
 	public void draw(Graphics g) {
 		super.draw(g);
 		Point location = getLocation();
-		x = (int)location.getX();
-		y = (int)location.getY();
+		int x = (int)location.getX();
+		int y = (int)location.getY();
 		String myNumber = Integer.toString(number);
 		Rectangle rec = this.getBounds();
 		int boundX = (int) rec.getWidth();
@@ -40,4 +59,12 @@ public class LocationChangingNumberedOval extends LocationChangingOval{
 		g.drawString(myNumber,x +boundX/2,y+boundY/2);
 	}
 
+	/**
+	 * @modifies this.counter
+	 */
+	public static void setZero(){
+		counter=0;
+	}
 }
+
+

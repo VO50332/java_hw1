@@ -175,8 +175,9 @@ public class Animator extends JFrame implements ActionListener {
         // File->New : clear all shapes
         if (source.equals(newItem)) {
             shapes.clear();
+            LocationChangingNumberedOval.setZero();
             repaint();
-
+            
             //TODO (BOM):  Add code for number of LocationChangingNumerOval = 0
         }
 
@@ -207,20 +208,20 @@ public class Animator extends JFrame implements ActionListener {
 
         	if (source.equals(triangleItem)) {
 
-        		LocationAndColorChangingTriangle newShape = new LocationAndColorChangingTriangle(shapeLocation, color,width,0,0,WINDOW_HEIGHT);
+        		LocationAndColorChangingTriangle newShape = new LocationAndColorChangingTriangle(shapeLocation, color,width,height);
 			 	shapes.add(newShape);
         		
         	}
         	if(source.equals(sectorItem)) {
-        		AngleChangingSector newShape = new AngleChangingSector(shapeLocation, color,width,height,startAngle,arcAngle,WINDOW_WIDTH,WINDOW_HEIGHT);
+        		AngleChangingSector newShape = new AngleChangingSector(shapeLocation, color,width,height,startAngle,arcAngle);
         	 	shapes.add(newShape);
         	}
         	if(source.equals(numberedOvalItem)) {
-        		LocationChangingNumberedOval newShape = new LocationChangingNumberedOval(shapeLocation, color,width,0,WINDOW_WIDTH,WINDOW_HEIGHT); 
+        		LocationChangingNumberedOval newShape = new LocationChangingNumberedOval(shapeLocation, color,width,height); 
         	 	shapes.add(newShape);
         	}
         	if(source.equals(ovalItem)) {
-        		LocationChangingOval newShape = new LocationChangingOval( shapeLocation, color,0,height,WINDOW_WIDTH,WINDOW_HEIGHT);
+        		LocationChangingOval newShape = new LocationChangingOval( shapeLocation, color,width,height);
         	 	shapes.add(newShape);
         	}
        

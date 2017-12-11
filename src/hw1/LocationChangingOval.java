@@ -11,18 +11,20 @@ import java.awt.*;
 
 
 	private Dimension dimension;
-	private int windowWidth;
-	private int windowHeight;
+    //  Abstraction Function:
+	// represents an oval such that its location is the upper left corner of its bounding rectangle.
+	// this.dimension contains the shape's bounding rectangle dimensions
+	
+    // Representation Invariant:
+	//this.dimension cannot be zero, negative or null
+	//this.location != null, color != null
+	
     /**
      * @effects Initializes this with a a given location , color and size.
      * also initializes the window dimensions 
      */
-	LocationChangingOval(Point _location, Color _color,int _width,int _height,int windowWidth,int windowHeight)  {
+	LocationChangingOval(Point _location, Color _color,int _width,int _height)  {
 		super(_location, _color);
-
-		this.windowWidth = windowWidth;
-		this.windowHeight = windowHeight;
-
 		Dimension _dimension  = new Dimension(_width,_height);// bounding rectangle dimensions 
 			try {
 				this.setSize(_dimension);
@@ -30,7 +32,6 @@ import java.awt.*;
 				this.dimension = ex.newDimension;
 				System.out.println("Impossible size. New size is:" + "(" + (int)ex.newDimension.getWidth() +"," + (int)ex.newDimension.getHeight() +")");
 			}
-
 	}
 	
     /**
@@ -43,15 +44,18 @@ import java.awt.*;
 			this.dimension = _dimension;
 		}
 		else {
-			throw new ImpossibleSizeException(this.windowWidth,this.windowHeight);
+			throw new ImpossibleSizeException();
 		}
-		
 	}
+	
+
+	
 	/**
 	 * @effects draws the triangle at specified location with this.dimension
 	 */
 	@Override
 	public void draw(Graphics g) {
+		//checkRep();
 		Point location = getLocation();
 		int x = (int)location.getX();
 		int y = (int)location.getY();
@@ -59,16 +63,14 @@ import java.awt.*;
 		int height = (int) this.dimension.getHeight();
 		g.setColor(getColor());
 		g.fillOval(x, y, width, height);
-		
 	}
-	
+
     /**
      * 
      * @return new Rectangle object such that its upper left corner is in the specified location, and its dimension is this.dimension
      */
 	@Override
 	public Rectangle getBounds() {
-		
 		Rectangle rec = new Rectangle(getLocation(),this.dimension); // do I have to create another object?
 		return rec;
 	}
