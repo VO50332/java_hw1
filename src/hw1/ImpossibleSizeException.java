@@ -12,28 +12,16 @@ Applications that override the clone method can also throw this exception to ind
 public class ImpossibleSizeException extends Exception{
 	public Dimension newDimension;
 
-	public ImpossibleSizeException(String message) {
-		super(message);
-		this.newDimension = new Dimension(100,100);
-		//return newDimension;
-	//this.dimension = dim;
+	public ImpossibleSizeException(int windowWidth,int windowHeight) {
+		//super(message);
+		int width = (int) (Math.random()*windowWidth*2/10+windowWidth/10);
+        int height = (int) (Math.random()*windowHeight*2/10+windowHeight/10);
+		this.newDimension = new Dimension(width,height);
+
 	}
-	//public Dimension main () {
-		//return this.newDimension;
-	//
-		
-		//if (dimension.getWidth() <= 0 | dimension.getHeight() <= 0 ) {
-			//Dimension newDimension = new Dimension(1,1);
-			//return newDimension;
-		//}
-		//return this.dimension;
-	//}
+
 
 }
-	//	return this.dimension;
-//	}
-//	System.out.println("everthing is ok");
-
 	
 	
 	

@@ -8,20 +8,22 @@ import java.util.Random;
 /**
  * A LocationChaningShape is a Shape that can change its location using its step()
  * method. A LocationChaningShape has a velocity property that determines the speed
- * of location changing.
+ * of location changing. 
+ * When the direction of its velocity changes - there is also a change in its color
  * Thus, a typical LocationChaningShape consists of the following set of
  * properties: {location, color, shape, size, velocity}
  */
-public abstract class LocationChangingShape extends Shape implements Animatable {//it is abstract only because the father is abstract?
+public abstract class LocationChangingShape extends Shape implements Animatable {
 	private int velocityX;
 	private int velocityY;
 	private boolean velocityChanged;
 
 
     // TODO (BOM): Write Abstraction Function
-
+	// represents a location changing shape, which has velocity in the x direction of this.velocityX and velocity in the y direction of this.velocityY.
+	// velocityChanged is a boolean that determines if the there was a change in the direction of the velocity and thus there needs to be a change of color
     // TODO (BOM): Write Representation Invariant
-
+	// this.velocityX and this.velocityY cannot be lower than -5, higher than 5, 0 or null
 
     /**
      * @effects Initializes this with a a given location and color. Each
@@ -32,15 +34,20 @@ public abstract class LocationChangingShape extends Shape implements Animatable 
 
 	 LocationChangingShape(Point _location, Color _color) {
 	    	super(_location, _color);
-		 //	setLocation(_location);
-		 	//setColor(_color);
-	    	Random rand = new Random();
-	    	this.velocityX = rand.nextInt(10)-5;
-	    	this.velocityY = rand.nextInt(10)-5;
-
+    		Random rand = new Random();
+    		int vX = rand.nextInt(10)-5;
+    		int vY = rand.nextInt(10)-5;
+    		setVelocity(vX, vY);
+    		checkRep();
 	    }
 	
 
+	 private void checkRep() { // there is no chance that this can happen!!
+		assert this.velocityX != 0  : "velocity in x direction cannot be zero";
+	    assert this.velocityY != 0 : "velocity in y direction cannot be zero";
+		assert (this.velocityX > 5 | this.velocityX < -5) : "velocity in x direction cannot be higher than 5 or lower than -5";
+	    assert (this.velocityX > 5 | this.velocityX < -5) : "velocity in y direction cannot be higher than 5 or lower than -5";
+	 }
     /**
      * @return the horizontal velocity of this.
      */
@@ -48,7 +55,7 @@ public abstract class LocationChangingShape extends Shape implements Animatable 
 
     public int getVelocityX() {
         // TODO (BOM): Implement this method
-
+    	checkRep();
     	return this.velocityX;
     }
 
@@ -58,7 +65,7 @@ public abstract class LocationChangingShape extends Shape implements Animatable 
      */
     public int getVelocityY() {
         // TODO (BOM): Implement this method
-
+    	checkRep();
     	return this.velocityY;
     }
 
@@ -70,14 +77,20 @@ public abstract class LocationChangingShape extends Shape implements Animatable 
      *          vertical velocity of this to velocityY.
      */
     public void setVelocity(int velocityX, int velocityY) {
+    	checkRep();
         // TODO (BOM): Implement this method
 
     	if ( velocityX > 5 || velocityX < -5 || velocityY > 5 || velocityY < -5 || velocityX == 0 || velocityY == 0) {
-    		assert false: "velocityX or velocityY are either above 5,under-5 or 0";
-    	}		
+    		Random rand = new Random();
+    		int vX = rand.nextInt(10)-5;
+    		int vY = rand.nextInt(10)-5;
+    		setVelocity(vX, vY);
+    	}	
+    	else {
     	this.velocityX = velocityX;
     	this.velocityY = velocityY;
-
+    	}
+    	checkRep();
     }
 
 
@@ -97,50 +110,48 @@ public abstract class LocationChangingShape extends Shape implements Animatable 
      */
     public void step(Rectangle bound) {
         // TODO (BOM): Implement this method
+    	checkRep();
     	Rectangle boundingRec = getBounds();
     	int width = (int) boundingRec.getWidth();
     	int height = (int) boundingRec.getHeight();
     	Point _location = getLocation();
     	double x = _location.getX();
     	double y = _location.getY();
-    	//double newX;
-    	//double newY;
+
     	double sizeX = bound.getWidth();
     	double sizeY = bound.getHeight();
-    	//private double y = location.getY();
+
     	double boundX = bound.getX();
     	double boundY = bound.getY();
     	boolean velocityChangedX;
     	boolean velocityChangedY;
-    	//System.out.println();
-    	if (x + width + velocityX  > boundX + sizeX || x + velocityX  < boundX) { 
-    	//	System.out.println("new location is: " + x + velocityX );
-    		//System.out.println("bound is:"+boundX + sizeX);
-    		velocityX = -velocityX;
+
+    	if (x + width + this.velocityX  > boundX + sizeX || x + this.velocityX  < boundX) { 
+
+    		this.velocityX = -this.velocityX;
     		velocityChangedX = true;
     	}
     	else {
     		velocityChangedX = false;
     	}
-    	//if (y + velocityY  > boundY  || y - height + velocityY  < boundY - sizeY) {
-    	if (y + height + velocityY  > boundY + sizeY || y +  velocityY  < boundY ) {
+    	if (y + height + this.velocityY  > boundY + sizeY || y +  this.velocityY  < boundY ) {
     		velocityChangedY = true;
-    		velocityY = -velocityY;
+    		this.velocityY = -this.velocityY;
     	}
     	else {
     		velocityChangedY = false;
     	}
     	velocityChanged=velocityChangedX || velocityChangedY;
-    	System.out.println("velcoity changed:" + velocityChanged);
-    	double newX = x+velocityX;
-    	double newY = y+velocityY;
+    	double newX = x+this.velocityX;
+    	double newY = y+this.velocityY;
     	
     	Point newPoint= new Point((int)newX,(int)newY);// is the casting here ok? yes
-    //	System.out.println("new point is:" + newPoint);
-    	setLocation(newPoint);			
+    	setLocation(newPoint);	
+    	checkRep();
 
     }
     public boolean velocityChanged() {
+    	checkRep();
     	return velocityChanged;
     }
 }

@@ -4,34 +4,33 @@ import java.awt.*;
 
 
 public class AngleChangingSector extends Shape implements Animatable{
-	private int width;
-	private int height;
+	//private int width;
+//	private int height;
 	private Dimension dimension;
 	private int startAngle;
 	private int arcAngle;
 	boolean up = true;
+	private int windowWidth;
+	private int windowHeight;
 	
-	public AngleChangingSector(Point location, Color color,int width, int height,int startAngle,int arcAngle) {
+	public AngleChangingSector(Point location, Color color,int width, int height,int startAngle,int arcAngle,int windowWidth,int windowHeight) {
 		super(location, color);
-<<<<<<< HEAD
-		this.width = width;
-		this.height = height;
-		dimension  = new Dimension(width,height);// bounding rectangle dimensions 
-=======
-	//	this.width = width;
-		//this.height = height;
-	//	dimension  = new Dimension(width,height);// bounding rectangle dimensions 
+		//this.width = width;
+	//	this.height = height;
+		//dimension  = new Dimension(width,height);// bounding rectangle dimensions 
+		this.windowWidth = windowWidth;
+		this.windowHeight = windowHeight;		
+		this.startAngle = startAngle;
+		this.arcAngle = arcAngle;
 		Dimension _dimension  = new Dimension(width,height);// bounding rectangle dimensions 
 		try {
 			this.setSize(_dimension);
+		} catch (ImpossibleSizeException ex) {
+			// TODO Auto-generated catch block
+			this.dimension = ex.newDimension;
+			System.out.println("Impossible size. New size is:" + "(" + (int)ex.newDimension.getWidth() +"," + (int)ex.newDimension.getHeight() +")");
 		}
-		catch (ImpossibleSizeException e){
-			System.out.println("no problem is possible");
-		}
-		
->>>>>>> 5088258c797dcb0102d8cc00a087612d9075b67d
-		this.startAngle = startAngle;
-		this.arcAngle = arcAngle;
+
 
 	}
 
@@ -60,13 +59,10 @@ public class AngleChangingSector extends Shape implements Animatable{
 			this.dimension = _dimension;
 		}
 		else {
-			ImpossibleSizeException ex=  new ImpossibleSizeException("width or height cannot be negative or zero");
-			this.dimension = ex.newDimension;
-			System.out.println("Impossible size. New size is:" + "(" + (int)ex.newDimension.getWidth() +"," + (int)ex.newDimension.getHeight() +")");
-			
+			throw new ImpossibleSizeException(this.windowWidth,this.windowHeight);			
 		}
-		
 	}
+
 
 	@Override
 	public Rectangle getBounds() {
@@ -79,8 +75,10 @@ public class AngleChangingSector extends Shape implements Animatable{
 	public void draw(Graphics g) {
 		int x = (int)getLocation().getX();
 		int y = (int)getLocation().getY();
+		int width = (int) this.dimension.getWidth();
+		int height = (int) this.dimension.getHeight();
 		g.setColor(getColor());
-		g.fillArc(x, y, this.width, this.height, this.startAngle, this.arcAngle);
+		g.fillArc(x, y, width, height, this.startAngle, this.arcAngle);
 		
 	}
 

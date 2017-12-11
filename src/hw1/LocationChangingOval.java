@@ -4,32 +4,24 @@ import java.awt.*;
 
  class LocationChangingOval extends LocationChangingShape{
 
-	
-	//private Point relocation;
-	private int width;
-	private int height;
-	private Dimension dimension;
 
+	private Dimension dimension;
+	private int windowWidth;
+	private int windowHeight;
 	
-	LocationChangingOval(Point _location, Color _color,int _width,int _height) {
+	LocationChangingOval(Point _location, Color _color,int _width,int _height,int windowWidth,int windowHeight)  {
 		super(_location, _color);
-<<<<<<< HEAD
-		this.width = _width;
-		this.height = _height;
-		dimension  = new Dimension(width,height);// bounding rectangle dimensions 
-=======
-		//this.width = _width;
-		//this.height = _height;
+
+		this.windowWidth = windowWidth;
+		this.windowHeight = windowHeight;
+
 		Dimension _dimension  = new Dimension(_width,_height);// bounding rectangle dimensions 
-		try {
-			this.setSize(_dimension);
-		} catch (ImpossibleSizeException e) {
-			// TODO Auto-generated catch block
-			System.out.println("no problem is possible");
-		}
->>>>>>> 5088258c797dcb0102d8cc00a087612d9075b67d
-		
-		
+			try {
+				this.setSize(_dimension);
+			} catch (ImpossibleSizeException ex) {
+				this.dimension = ex.newDimension;
+				System.out.println("Impossible size. New size is:" + "(" + (int)ex.newDimension.getWidth() +"," + (int)ex.newDimension.getHeight() +")");
+			}
 
 	}
 	
@@ -40,10 +32,7 @@ import java.awt.*;
 			this.dimension = _dimension;
 		}
 		else {
-			ImpossibleSizeException ex=  new ImpossibleSizeException("width or height cannot be negative or zero");
-			this.dimension = ex.newDimension;
-			System.out.println("Impossible size. New size is:" + "(" + (int)ex.newDimension.getWidth() +"," + (int)ex.newDimension.getHeight() +")");
-			
+			throw new ImpossibleSizeException(this.windowWidth,this.windowHeight);
 		}
 		
 	}
@@ -53,6 +42,8 @@ import java.awt.*;
 		Point location = getLocation();
 		int x = (int)location.getX();
 		int y = (int)location.getY();
+		int width = (int) this.dimension.getWidth();
+		int height = (int) this.dimension.getHeight();
 		g.setColor(getColor());
 		g.fillOval(x, y, width, height);
 		

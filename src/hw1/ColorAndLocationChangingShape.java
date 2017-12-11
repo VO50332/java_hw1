@@ -53,7 +53,7 @@ public abstract class ColorAndLocationChangingShape extends LocationChangingShap
     		green = (int) rand.nextInt(256);
     		blue = (int) rand.nextInt(256);
     		Color newColor = new Color(red,green,blue);
-    		System.out.println("color test is:" + newColor);
+    	//	System.out.println("color test is:" + newColor);
     		setColor(newColor);
     	}
 
